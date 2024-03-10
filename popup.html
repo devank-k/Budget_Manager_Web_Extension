@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Manager</title>
+    <link rel="stylesheet" href="styles.css" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap">
+    <link rel="icon" type="image/jpeg" href="budget manager.jpeg">
+</head>
+<body>
+    <div class="popup-container">
+        <header>
+            <h1>Budget Manager</h1>
+            <div id="monthRange"></div> <!-- Dates will be inserted here -->
+            <nav>
+                <ul>
+                    <li><a href="#" id="homeLink">Home</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main id="mainContent">
+            <section id="overview">
+                <h2><a href="#" id="overviewLink"">Overview</a></h2>
+                <!-- Add content for overview -->
+            </section>
+            <section id="income">
+                <h2><a href="#" id="updateLimitLink">Update Limit</a></h2> <!-- Link to toggle display -->
+                <div id="limitUpdateContainer" style="display: none;"> <!-- Container for input field and button -->
+                    <div class="input-container">
+                        <input type="number" id="limitInputField" placeholder="Enter new limit">
+                        <button id="updateLimitButton">Update Limit</button>
+                    </div>
+                </div>
+            </section>
+            <section id="reports">
+                <h2><a href="#" id="conversionLink">Money Conversion</a></h2>
+            </section>
+            <section id="history">
+                <h2><a href="#" id="historyLink">History</a></h2>
+                <!-- Add content for expenses -->
+                
+            </section>
+            <section>
+            <h2>Total Money Spend: <span class="currencyDisplay"></span> <span id="spendDisplay" class="total-money"></span></h2>
+        </section>  
+        <section>
+            <h2>Limit: <span class="currencyDisplay"></span> <span id="limitDisplay"></span></h2>
+        </section>  
+        <section>
+            <h2>Enter the amount:</h2>
+            <div class="input-container">
+                <input type="number" id="amountInputField" autocomplete="off">
+                <button id="submitButton">Spend</button>
+            </div>
+        </section>  
+        </main>
+        <div id="limitreached" class="notificationred"></div>
+        <div id="limitNotification" class="notification"></div>
+        <footer>
+            <div class="switch-container">
+            <label class="switch"><input type="checkbox" id="darkModeToggle"><span class="slider"></span></label><p class="switch-label">&copy; 2024 Budget Manager</p>  
+        </div>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

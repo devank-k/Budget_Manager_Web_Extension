@@ -1,0 +1,901 @@
+body {
+  font-family: "Raleway", Arial, sans-serif; /* Add Raleway font with fallback to Arial and sans-serif */
+  margin: 0;
+  padding: 0;
+  width: 300px;
+}
+
+/* Add the rest of your CSS styles below */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.363);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2c3e50;
+  border-radius: 10px;
+}
+
+/* Adjust container width */
+.popup-container {
+  width: 90%;
+  max-width: 800px;
+  margin: -1px auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Add overflow hidden to prevent content from overflowing */
+  transition: 300ms ease-in-out;
+}
+
+.country-container label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #333; /* Adjust color as needed */
+}
+
+.dark-mode .country-container label {
+  color: #fff; /* Adjust color as needed */
+}
+
+.card {
+  position: relative;
+  width: 250px;
+  height: 180px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 5px solid #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px,
+    inset rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    inset rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: all ease-in-out 0.3s;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.dark-mode .card {
+  background-color: #333333;
+  border: 5px solid #333333;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px,
+    inset rgba(0, 0, 0, 0.19) 0px 10px 20px,
+    inset rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: all ease-in-out 0.3s;
+}
+
+.card-des {
+  margin: 0;
+  font-size: 10px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 300;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  cursor: default;
+  transition: all ease-in-out 0.3s;
+}
+
+.dark-mode .card-des {
+  color: #ffffff;
+  transition: all ease-in-out 0.3s;
+}
+
+#countrySelect {
+  width: 150px;
+  padding: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: #000;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding-right: 30px;
+  transition: 300ms ease-in-out;
+}
+
+#countrySelect::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 11.812 5.657 8 4.293 9.343 10 14.188z'/%3E%3C/svg%3E");
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s ease-out;
+}
+
+#countrySelect:focus,
+#countrySelect:active {
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#countrySelect:focus::after,
+#countrySelect:active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dark-mode #countrySelect {
+  background-color: #343434;
+  color: #ffffff;
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode #countrySelect::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 11.812 5.657 8 4.293 9.343 10 14.188z'/%3E%3C/svg%3E");
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s ease-out;
+}
+
+.dark-mode #countrySelect:focus::after,
+.dark-mode #countrySelect:active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Make history list scrollable */
+#historyList {
+  max-height: 200px; /* Set max height for scrollable area */
+  overflow-y: auto; /* Add vertical scrollbar when content overflows */
+  font-size: 10px;
+}
+
+#overviewList {
+  max-height: 200px; /* Set max height for scrollable area */
+  overflow-y: auto; /* Add vertical scrollbar when content overflows */
+}
+
+#countrySelect {
+  margin-left: 10px;
+}
+
+.country-flag {
+  width: 20px;
+  height: 15px;
+  margin-left: 5px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+  margin-left: 4px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+.tooltip .icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #4caf50;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 17px;
+  font-size: 10px;
+}
+
+h2 {
+  color: black;
+}
+header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  transition: 300ms ease-in-out;
+}
+
+header h1 {
+  margin: 0;
+}
+
+#monthRange {
+  color: #ffffff; /* Adjust color as needed */
+  font-size: 14px; /* Adjust font size as needed */
+  margin-top: 5px; /* Adjust margin as needed */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  display: inline-block; /* Display as block element */
+  padding: 8px 16px; /* Add padding */
+  background-color: #2c3e50; /* Background color */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Add rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for color change */
+  font-size: 16px;
+}
+
+nav ul li a:hover {
+  background-color: #34495e; /* Change background color on hover */
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+footer {
+  background-color: #34495e;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  transition: 300ms ease-in-out;
+}
+
+/* Stylize the input box */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Stylize the input box */
+#amountInputField {
+  border: none;
+  outline: none;
+  margin: 10px;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+#amountInputField:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696, -13px -13px 100px #ffffff;
+}
+
+.dark-mode #amountInputField {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  color: #ffffff;
+  padding: 1em;
+  background-color: #343434;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode #amountInputField:focus {
+  background-color: rgb(0, 0, 0);
+}
+
+/* Stylize the submit button */
+#submitButton {
+  font-size: 16px;
+  background: #2c3e50;
+  color: white;
+  padding: 0.8em 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+#submitButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+#submitButton:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#limitInputField {
+  border: none;
+  outline: none;
+  margin: 10px;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+#limitInputField:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696, -13px -13px 100px #ffffff;
+}
+
+.dark-mode #limitInputField {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  color: #ffffff;
+  padding: 1em;
+  background-color: #343434;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode #limitInputField:focus {
+  background-color: rgb(0, 0, 0);
+}
+
+/* Stylize the Update Limit button */
+#updateLimitButton {
+  font-size: 15px;
+  background: #2c3e50;
+  color: white;
+  padding: 0.8em 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+/* Add hover effect to the Update Limit button */
+#updateLimitButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+#updateLimitButton:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.notification {
+  display: none;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  font-size: 13px;
+  width: 180px;
+  font-weight: 600;
+}
+
+.notification.show {
+  display: block;
+}
+
+#limitreached {
+  display: none;
+  background-color: #ff0000;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  width: 180px;
+}
+
+#limitreached.show {
+  display: block;
+}
+
+.exceeded-limit {
+  color: red;
+}
+
+#conversionLink,
+#historyLink,
+#overviewLink,
+#updateLimitLink,
+#savingsLink {
+  color: #000000; /* Text color */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+#conversionLink:hover,
+#historyLink:hover,
+#overviewLink:hover,
+#updateLimitLink:hover,
+#savingsLink:hover {
+  color: #2980b9; /* Change color on hover */
+}
+
+.dark-mode #conversionLink:hover,
+.dark-mode #historyLink:hover,
+.dark-mode #overviewLink:hover,
+.dark-mode #updateLimitLink:hover,
+.dark-mode #savingsLink:hover{
+  color: #d0d0d0; /* Change color on hover */
+}
+
+#conversion {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode #conversion {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: #333333;
+}
+
+#conversion h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+#conversion div {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.dark-mode #conversion div {
+  margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+  transition: 300ms ease-in-out;
+}
+
+#conversion label {
+  display: inline-block;
+  width: 120px;
+}
+
+#conversion select {
+  width: 150px;
+  padding: 5px;
+  font-size: 14px;
+  margin: 5px;
+  background-color: white;
+  color: #000;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-out;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding-right: 30px;
+  transition: 300ms ease-in-out;
+}
+
+#conversion select::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 11.812 5.657 8 4.293 9.343 10 14.188z'/%3E%3C/svg%3E");
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s ease-out;
+}
+
+#conversion select:focus,
+#conversion select:active {
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#conversion select:focus::after,
+#conversion select:active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dark-mode #conversion select {
+  background-color: #212121;
+  color: #ffffff;
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode #conversion select::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 11.812 5.657 8 4.293 9.343 10 14.188z'/%3E%3C/svg%3E");
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.2s ease-out;
+}
+
+.dark-mode #conversion select:focus::after,
+.dark-mode #conversion select:active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+#conversion input[type="number"] {
+  border: none;
+  width: 100px;
+  outline: none;
+  margin: 10px;
+  border-radius: 15px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+#conversion input[type="number"]:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 13px 13px 100px #969696, -13px -13px 100px #ffffff;
+}
+
+.dark-mode #conversion input[type="number"] {
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  color: #ffffff;
+  padding: 1em;
+  background-color: #343434;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode #conversion input[type="number"]:focus {
+  background-color: rgb(0, 0, 0);
+}
+
+#conversion button {
+  font-size: 15px;
+  background: #2c3e50;
+  color: white;
+  padding: 0.8em 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+#conversion button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+#conversion button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#convertedAmount {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#history {
+  margin-top: 20px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+}
+.history-header h2 {
+  margin-right: 10px; /* Adjust spacing between heading and button */
+}
+
+#deleteHistoryButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.dark-mode #deleteHistoryButton {
+  background-color: white;
+  transition-duration: 0.3s;
+}
+
+.svgIcon {
+  width: 8px;
+  transition-duration: 0.3s;
+}
+
+.svgIcon path {
+  fill: white;
+}
+
+.dark-mode .svgIcon path {
+  fill: #000000;
+}
+
+#deleteHistoryButton:hover {
+  width: 80px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+#deleteHistoryButton:hover .svgIcon {
+  width: 30px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+}
+
+#deleteHistoryButton:hover .svgIcon path {
+  fill: black;
+}
+
+.dark-mode #deleteHistoryButton:hover .svgIcon path {
+  fill: white;
+}
+
+#deleteHistoryButton::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+#deleteHistoryButton:hover::before {
+  font-size: 8px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: 0.3s;
+}
+
+#historyList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dark-mode #historyList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+}
+
+#historyList li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc; /* Add a border between list items */
+}
+
+#historyList li:last-child {
+  border-bottom: none; /* Remove border from the last list item */
+}
+
+.currencyCode {
+  font-size: px; /* Adjust this value to change the size of the currency code */
+}
+
+.switch-container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.switch-label {
+  margin-left: 30px; /* Add some space between switch and paragraph */
+}
+
+.switch {
+  display: block;
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  /* size of sliding icon -- sun and moon */
+  --size-of-icon: 1.4em;
+  /* it is like a inline-padding of switch */
+  --slider-offset: 0.3em;
+  position: relative;
+  width: var(--width-of-switch);
+  height: var(--height-of-switch);
+  flex: 0 0 auto;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f4f4f5;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--size-of-icon, 1.4em);
+  width: var(--size-of-icon, 1.4em);
+  border-radius: 20px;
+  left: var(--slider-offset, 0.3em);
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #303136;
+}
+
+input:checked + .slider:before {
+  left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+  background: #303136;
+  /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+  box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+/* Add dark mode styles */
+.dark-mode body {
+  background-color: #121212; /* Change background color for dark mode */
+  color: #fff; /* Change text color for dark mode */
+}
+
+/* Add dark mode styles for specific elements if needed */
+.dark-mode header {
+  background-color: #000000; /* Change header background color for dark mode */
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode footer {
+  background-color: #000000; /* Change footer background color for dark mode */
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode .popup-container {
+  background-color: #1f1b24; /* Change popup container background color for dark mode */
+  border-color: #fff; /* Change border color for dark mode */
+  transition: 300ms ease-in-out;
+}
+
+.dark-mode h2 {
+  color: #fff;
+}
+
+.dark-mode #conversionLink,
+.dark-mode #historyLink,
+.dark-mode #overviewLink,
+.dark-mode #updateLimitLink {
+  color: #ffffff; /* Text color */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Responsive CSS */
+@media only screen and (max-width: 600px) {
+  .popup-container {
+    width: 100%; /* Adjust the width for smaller screens */
+  }
+
+  header {
+    padding: 10px;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  footer {
+    padding: 5px 10px;
+  }
+}
