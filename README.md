@@ -41,10 +41,8 @@ The budget manager web extension can be used by students from all around the wor
 
 ## Demo Video
 
-<video autoplay loop muted>
-    <source src="asset/budget_manager.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+https://github.com/devank-k/Budget_Manager_Web_Extension/assets/145743151/9832383a-8f73-4067-8262-d5c9835a8272
+
 
 
 
