@@ -44,7 +44,7 @@ The budget manager web extension can be used by students from all around the wor
 <video autoplay loop muted>
     <source src="asset/budget_manager.mp4" type="video/mp4">
     Your browser does not support the video tag.
-</video>
+</video>  
 
 
 
