@@ -1,5 +1,6 @@
-
-![Logo](asset/icon128.png)
+<p align ="center">
+    <img alt="Logo" src="asset/icon128.png">
+</p>
 
 
 # Budget Manager
