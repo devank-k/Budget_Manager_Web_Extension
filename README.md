@@ -1,4 +1,5 @@
-
+![Extension Image](![Screenshot 2024-03-12 221912](https://github.com/devank-k/Budget_Manager_Web_Extension/assets/145743151/b8754ebb-8cb8-490e-afdd-02af3ba7782d)
+)
 ![Logo](asset/icon128.png)
 
 
